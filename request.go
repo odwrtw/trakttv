@@ -38,6 +38,7 @@ func (t *TraktTv) request(URL string, q *Query, result interface{}) error {
 		fmt.Println("===============")
 		fmt.Printf("URL: %q\n", URL)
 		fmt.Println("===============")
+		fmt.Printf("Status : %q", resp.Status)
 
 		defer resp.Body.Close()
 		body, err := ioutil.ReadAll(resp.Body)

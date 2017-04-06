@@ -6,12 +6,24 @@ import "fmt"
 func (t *TraktTv) SearchMovieByID(id string, qo QueryOption) (*Movie, error) {
 	url := fmt.Sprintf("%s/%s/%s", t.Endpoint, "movies", id)
 
-	var movie *Movie
+	var movie Movie
 	if err := t.request(url, NewQuery(qo), &movie); err != nil {
 		return nil, err
 	}
 
-	return movie, nil
+	return &movie, nil
+}
+
+// SearchShowByID searches a show by its trakttv ID / slug or by its IMDB ID
+func (t *TraktTv) SearchShowByID(id string, qo QueryOption) (*Show, error) {
+	url := fmt.Sprintf("%s/%s/%s", t.Endpoint, "shows", id)
+
+	var show Show
+	if err := t.request(url, NewQuery(qo), &show); err != nil {
+		return nil, err
+	}
+
+	return &show, nil
 }
 
 // SearchResult represents a generic search result
