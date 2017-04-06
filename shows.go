@@ -1,13 +1,18 @@
 package trakttv
 
+import "time"
+
 // Show holds the show informations
 type Show struct {
-	Title    string `json:"title"`
-	Year     int    `json:"year"`
-	IDs      IDs    `json:"ids"`
-	Overview string `json:"overview"`
-	Status   string `json:"status"`
-	Images   Images `json:"images"`
+	Title      string    `json:"title"`
+	Year       int       `json:"year"`
+	IDs        IDs       `json:"ids"`
+	Rating     float64   `json:"rating"`
+	Votes      int       `json:"votes"`
+	FirstAired time.Time `json:"first_aired"`
+	Overview   string    `json:"overview"`
+	Status     string    `json:"status"`
+	Images     Images    `json:"images"`
 }
 
 // Season holds the season informations
