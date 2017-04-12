@@ -12,6 +12,7 @@ type Movie struct {
 	Overview      string   `json:"overview"`
 	Votes         int      `json:"votes"`
 	Released      string   `json:"released"`
+	Runtime       int      `json:"runtime"`
 	Language      string   `json:"language"`
 	Rating        float64  `json:"rating"`
 	Genres        []string `json:"genres"`
