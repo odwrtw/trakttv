@@ -1,6 +1,9 @@
 package trakttv
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // SearchMovieByID searches a movie by its trakttv ID / slug or by its IMDB ID
 func (t *TraktTv) SearchMovieByID(id string, qo QueryOption) (*Movie, error) {
@@ -42,7 +45,10 @@ type SearchResult struct {
 
 // Search searches for anything
 func (t *TraktTv) Search(sq SearchQuery, qo QueryOption) ([]*SearchResult, error) {
-	url := fmt.Sprintf("%s/search", t.Endpoint)
+	if sq.Type == "" || sq.Query == "" {
+		return nil, errors.New("missing argument")
+	}
+	url := fmt.Sprintf("%s/search/%s", t.Endpoint, sq.Type)
 
 	q := NewQuery(qo)
 	q.sq = &sq
