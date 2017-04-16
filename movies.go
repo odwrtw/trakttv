@@ -39,6 +39,14 @@ type BoxOfficeMovie struct {
 	Movie   Movie `json:"movie"`
 }
 
+// PlayedMovie represents the movie and its played count
+type PlayedMovie struct {
+	WatcherCount   int   `json:"watcher_count"`
+	PlayCount      int   `json:"play_count"`
+	CollectedCount int   `json:"collected_count"`
+	Movie          Movie `json:"movie"`
+}
+
 // PopularMovies returns the popular movies
 func (t *TraktTv) PopularMovies(qo QueryOption) ([]*Movie, error) {
 
@@ -84,6 +92,45 @@ func (t *TraktTv) BoxOfficeMovies(qo QueryOption) ([]*BoxOfficeMovie, error) {
 	url := fmt.Sprintf("%s/%s", t.Endpoint, "movies/boxoffice")
 
 	var movies []*BoxOfficeMovie
+	if err := t.request(url, NewQuery(qo), &movies); err != nil {
+		return nil, err
+	}
+
+	return movies, nil
+}
+
+// PlayedMovies returns the mosts played movies
+func (t *TraktTv) PlayedMovies(qo QueryOption) ([]*PlayedMovie, error) {
+
+	url := fmt.Sprintf("%s/%s", t.Endpoint, "movies/played")
+
+	var movies []*PlayedMovie
+	if err := t.request(url, NewQuery(qo), &movies); err != nil {
+		return nil, err
+	}
+
+	return movies, nil
+}
+
+// WatchedMovies returns the mosts played movies by unique users
+func (t *TraktTv) WatchedMovies(qo QueryOption) ([]*PlayedMovie, error) {
+
+	url := fmt.Sprintf("%s/%s", t.Endpoint, "movies/watched")
+
+	var movies []*PlayedMovie
+	if err := t.request(url, NewQuery(qo), &movies); err != nil {
+		return nil, err
+	}
+
+	return movies, nil
+}
+
+// CollectedMovies returns the mosts collected movies
+func (t *TraktTv) CollectedMovies(qo QueryOption) ([]*PlayedMovie, error) {
+
+	url := fmt.Sprintf("%s/%s", t.Endpoint, "movies/collected")
+
+	var movies []*PlayedMovie
 	if err := t.request(url, NewQuery(qo), &movies); err != nil {
 		return nil, err
 	}
