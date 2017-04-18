@@ -28,6 +28,16 @@ const (
 	TypeList         = "list"
 )
 
+// Field represents the fields of data that you can use for search
+type Field string
+
+// Available fields
+const (
+	FieldTitle    Field = "title"
+	FieldPeople         = "people"
+	FieldOverview       = "overview"
+)
+
 // New returns a new tvrage client
 func New(key string) *TraktTv {
 	return &TraktTv{

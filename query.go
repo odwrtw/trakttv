@@ -8,9 +8,11 @@ import (
 
 // SearchQuery represents a search query
 type SearchQuery struct {
-	Query string
-	Type  Type
-	Year  int
+	Query   string
+	Type    Type
+	Year    int
+	Ratings string
+	Field   Field
 }
 
 // ExtendedInfo represents the params you can add to a query to get more
@@ -81,12 +83,15 @@ func (q *Query) urlValues() *url.Values {
 		v.Add("query", q.sq.Query)
 	}
 
-	if q.sq.Type != "" {
-		v.Add("type", string(q.sq.Type))
-	}
-
 	if q.sq.Year != 0 {
 		v.Add("year", strconv.Itoa(q.sq.Year))
+	}
+
+	if q.sq.Ratings != "" {
+		v.Add("ratings", q.sq.Ratings)
+	}
+	if q.sq.Field != "" {
+		v.Add("fields", string(q.sq.Field))
 	}
 
 	return v
