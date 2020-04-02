@@ -29,6 +29,19 @@ func (t *TraktTv) SearchShowByID(id string, qo QueryOption) (*Show, error) {
 	return &show, nil
 }
 
+// SearchEpisode searches an episode by its trakttv ID / slug / IMDB ID,
+// season and episode number
+func (t *TraktTv) SearchEpisode(id string, season, episode int, qo QueryOption) (*Episode, error) {
+	url := fmt.Sprintf("%s/shows/%s/seasons/%d/episodes/%d", t.Endpoint, id, season, episode)
+
+	var e Episode
+	if err := t.request(url, NewQuery(qo), &e); err != nil {
+		return nil, err
+	}
+
+	return &e, nil
+}
+
 // SearchResult represents a generic search result
 type SearchResult struct {
 	Type   Type    `json:"type"`
