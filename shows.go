@@ -26,11 +26,15 @@ type Season struct {
 
 // Episode holds the episode informations
 type Episode struct {
-	Season int    `json:"season"`
-	Number int    `json:"number"`
-	Title  string `json:"title"`
-	IDs    IDs    `json:"ids"`
-	Images Images `json:"images"`
+	Season     int       `json:"season"`
+	Number     int       `json:"number"`
+	Title      string    `json:"title"`
+	IDs        IDs       `json:"ids"`
+	Overview   string    `json:"overview"`
+	Rating     float64   `json:"rating"`
+	Votes      int       `json:"votes"`
+	Runtime    int       `json:"runtime"`
+	FirstAired time.Time `json:"first_aired"`
 }
 
 // TrendingShow represents a trending show with the number of trakt.tv user
