@@ -24,6 +24,7 @@ const (
 	ExtendedInfoMin      ExtendedInfo = "min"
 	ExtendedInfoImages                = "images"
 	ExtendedInfoFull                  = "full"
+	ExtendedInfoEpisodes              = "episodes"
 	ExtendedInfoMetadata              = "metadata"
 )
 
