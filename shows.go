@@ -20,8 +20,17 @@ type Show struct {
 
 // Season holds the season informations
 type Season struct {
-	Number int `json:"number"`
-	IDs    IDs `json:"ids"`
+	Number        int        `json:"number"`
+	IDs           IDs        `json:"ids"`
+	Rating        float64    `json:"rating"`
+	Votes         int        `json:"votes"`
+	EpisodeCount  int        `json:"episode_count"`
+	AiredEpisodes int        `json:"aired_episodes"`
+	Title         string     `json:"title"`
+	Overview      string     `json:"overview"`
+	FirstAired    time.Time  `json:"first_aired"`
+	Network       string     `json:"network"`
+	Episodes      []*Episode `json:"episodes"`
 }
 
 // Episode holds the episode informations
@@ -135,4 +144,16 @@ func (t *TraktTv) CollectedShows(qo QueryOption) ([]*PlayedShow, error) {
 	}
 
 	return shows, nil
+}
+
+// GetShowSeasons returns the seasons of a show
+func (t *TraktTv) GetShowSeasons(id string, qo QueryOption) ([]*Season, error) {
+	url := fmt.Sprintf("%s/shows/%s/seasons", t.Endpoint, id)
+
+	var seasons []*Season
+	if err := t.request(url, NewQuery(qo), &seasons); err != nil {
+		return nil, err
+	}
+
+	return seasons, nil
 }
