@@ -22,10 +22,10 @@ type Type string
 // Available types
 const (
 	TypeMovie   Type = "movie"
-	TypeShow         = "show"
-	TypeEpisode      = "episode"
-	TypePerson       = "person"
-	TypeList         = "list"
+	TypeShow    Type = "show"
+	TypeEpisode Type = "episode"
+	TypePerson  Type = "person"
+	TypeList    Type = "list"
 )
 
 // Field represents the fields of data that you can use for search
@@ -34,8 +34,8 @@ type Field string
 // Available fields
 const (
 	FieldTitle    Field = "title"
-	FieldPeople         = "people"
-	FieldOverview       = "overview"
+	FieldPeople   Field = "people"
+	FieldOverview Field = "overview"
 )
 
 // New returns a new tvrage client

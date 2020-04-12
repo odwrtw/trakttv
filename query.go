@@ -22,10 +22,10 @@ type ExtendedInfo string
 // Available ExtendedInfo
 const (
 	ExtendedInfoMin      ExtendedInfo = "min"
-	ExtendedInfoImages                = "images"
-	ExtendedInfoFull                  = "full"
-	ExtendedInfoEpisodes              = "episodes"
-	ExtendedInfoMetadata              = "metadata"
+	ExtendedInfoImages   ExtendedInfo = "images"
+	ExtendedInfoFull     ExtendedInfo = "full"
+	ExtendedInfoEpisodes ExtendedInfo = "episodes"
+	ExtendedInfoMetadata ExtendedInfo = "metadata"
 )
 
 // Pagination represents the pagination options you can add to a query
