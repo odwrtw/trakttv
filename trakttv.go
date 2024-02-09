@@ -4,8 +4,8 @@ import "net/http"
 
 // Constants to remove later
 const (
-	ProductionEndpoint = "https://api-v2launch.trakt.tv"
-	StagingEndpoint    = "http://api.staging.trakt.tv"
+	ProductionEndpoint = "https://api.trakt.tv"
+	StagingEndpoint    = "http://api-staging.trakt.tv"
 )
 
 // TraktTv client
