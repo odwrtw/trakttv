@@ -2,7 +2,7 @@ package trakttv
 
 import "net/http"
 
-// Constants to remove later
+// API endpoints
 const (
 	ProductionEndpoint = "https://api.trakt.tv"
 	StagingEndpoint    = "http://api-staging.trakt.tv"
@@ -38,7 +38,7 @@ const (
 	FieldOverview Field = "overview"
 )
 
-// New returns a new tvrage client
+// New returns a new TraktTv client
 func New(key string) *TraktTv {
 	return &TraktTv{
 		HTTPClient: http.DefaultClient,

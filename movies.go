@@ -73,7 +73,7 @@ func (t *TraktTv) TrendingMovies(qo QueryOption) ([]*TrendingMovie, error) {
 	return movies, nil
 }
 
-// AnticipatedMovies returns the trending movies
+// AnticipatedMovies returns the anticipated movies
 func (t *TraktTv) AnticipatedMovies(qo QueryOption) ([]*AnticipatedMovie, error) {
 
 	url := fmt.Sprintf("%s/%s", t.Endpoint, "movies/anticipated")
