@@ -94,7 +94,7 @@ func (t *TraktTv) TrendingShows(qo QueryOption) ([]*TrendingShow, error) {
 	return shows, nil
 }
 
-// AnticipatedShows returns the trending shows
+// AnticipatedShows returns the anticipated shows
 func (t *TraktTv) AnticipatedShows(qo QueryOption) ([]*AnticipatedShow, error) {
 
 	url := fmt.Sprintf("%s/%s", t.Endpoint, "shows/anticipated")
