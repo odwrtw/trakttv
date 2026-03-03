@@ -2,14 +2,13 @@ package trakttv
 
 import (
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/url"
-	"os"
+	"strconv"
 )
 
-// Test shit
+// request performs a GET request to the given URL, appending query options,
+// and decodes the JSON response into result.
 func (t *TraktTv) request(URL string, q *Query, result interface{}) error {
 	// Add the query options to the URL
 	u, err := url.Parse(URL)
@@ -24,32 +23,15 @@ func (t *TraktTv) request(URL string, q *Query, result interface{}) error {
 		return err
 	}
 
-	req.Header.Add("Content-type", "application/json")
+	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("trakt-api-key", t.Key)
-	req.Header.Add("trakt-api-version", "2")
+	req.Header.Add("trakt-api-version", strconv.Itoa(t.Version))
 
 	resp, err := t.HTTPClient.Do(req)
 	if err != nil {
 		return err
 	}
-
-	if os.Getenv("DEBUG") == "1" {
-		fmt.Println("debug mode")
-		fmt.Println("===============")
-		fmt.Printf("URL: %q\n", URL)
-		fmt.Println("===============")
-		fmt.Printf("Status : %q", resp.Status)
-
-		defer resp.Body.Close()
-		body, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			return err
-		}
-		fmt.Println(string(body))
-		fmt.Println("===============")
-
-		return json.Unmarshal(body, result)
-	}
+	defer resp.Body.Close()
 
 	return json.NewDecoder(resp.Body).Decode(result)
 }
