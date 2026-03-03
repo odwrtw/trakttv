@@ -31,7 +31,7 @@ func (t *TraktTv) request(URL string, q *Query, result interface{}) error {
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	return json.NewDecoder(resp.Body).Decode(result)
 }
